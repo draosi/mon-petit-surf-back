@@ -53,12 +53,6 @@
               "target": "Package",
               "version": "[7.0.12, )"
             },
-            "Microsoft.EntityFrameworkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[7.0.12, )"
-            },
             "MySql.Data": {
               "target": "Package",
               "version": "[8.1.0, )"
