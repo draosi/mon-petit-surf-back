@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace mon_petit_surf
+namespace mon_petit_surf.Context
 {
     public class MonPetitSurfContext : DbContext
     {

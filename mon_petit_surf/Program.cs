@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using mon_petit_surf;
+using mon_petit_surf.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
