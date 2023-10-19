@@ -53,6 +53,10 @@
               "target": "Package",
               "version": "[7.0.12, )"
             },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "target": "Package",
+              "version": "[7.0.12, )"
+            },
             "MySql.Data": {
               "target": "Package",
               "version": "[8.1.0, )"
