@@ -26,5 +26,10 @@ namespace MonPetitSurf.Services
         {
             return await _context.Spots.Select(e => e.Department).Distinct().ToListAsync();
         }
+
+        public async Task<List<Utilities>> getUtilities()
+        {
+            return await _context.Utilities.ToListAsync();
+        }
     }
 }
