@@ -56,3 +56,12 @@ C:\Users\Isoard\Desktop\CDA\Back\mon_petit_surf\mon_petit_surf\bin\Debug\net7.0\
 C:\Users\Isoard\Desktop\CDA\Back\mon_petit_surf\mon_petit_surf\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 C:\Users\Isoard\Desktop\CDA\Back\mon_petit_surf\mon_petit_surf\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
 C:\Users\Isoard\Desktop\CDA\Back\mon_petit_surf\mon_petit_surf\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\Isoard\Desktop\CDA\Back\mon_petit_surf\mon_petit_surf\bin\Debug\net7.0\efpt.config.json
+C:\Users\Isoard\Desktop\CDA\Back\mon_petit_surf\mon_petit_surf\bin\Debug\net7.0\Humanizer.dll
+C:\Users\Isoard\Desktop\CDA\Back\mon_petit_surf\mon_petit_surf\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\Isoard\Desktop\CDA\Back\mon_petit_surf\mon_petit_surf\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\Isoard\Desktop\CDA\Back\mon_petit_surf\mon_petit_surf\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\Isoard\Desktop\CDA\Back\mon_petit_surf\mon_petit_surf\bin\Debug\net7.0\Mono.TextTemplating.dll
+C:\Users\Isoard\Desktop\CDA\Back\mon_petit_surf\mon_petit_surf\bin\Debug\net7.0\MySqlConnector.dll
+C:\Users\Isoard\Desktop\CDA\Back\mon_petit_surf\mon_petit_surf\bin\Debug\net7.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Users\Isoard\Desktop\CDA\Back\mon_petit_surf\mon_petit_surf\bin\Debug\net7.0\System.CodeDom.dll

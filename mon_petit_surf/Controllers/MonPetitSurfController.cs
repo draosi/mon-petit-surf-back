@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace mon_petit_surf.Controllers
+namespace MonPetitSurf.Controllers
 {
     public class MonPetitSurfController : Controller
     {

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qtcxCPZ7KRfpIHotYTAfAppnid/oVyJI6zwTZ2kOaaR6K6Tv1Cr7nweIHvNsCHIl2OmUqbf8Eyo5xpAOFNOu3w==",
+  "dgSpecHash": "arJNvaAS0s0tXMcQARtYmB9lkW+hYf0juqFjuCwnno8iJ6naULFO+BBf6vZS4pe1q5SYGXpsJsbmeU8V8VgKUA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Isoard\\Desktop\\CDA\\Back\\mon_petit_surf\\mon_petit_surf\\mon_petit_surf.csproj",
+  "projectFilePath": "C:\\Users\\Isoard\\Desktop\\CDA\\Back\\mon_petit_surf\\mon_petit_surf\\MonPetitSurf.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Isoard\\.nuget\\packages\\google.protobuf\\3.21.9\\google.protobuf.3.21.9.nupkg.sha512",
     "C:\\Users\\Isoard\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
@@ -33,6 +33,8 @@
     "C:\\Users\\Isoard\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\Isoard\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
     "C:\\Users\\Isoard\\.nuget\\packages\\mysql.data\\8.1.0\\mysql.data.8.1.0.nupkg.sha512",
+    "C:\\Users\\Isoard\\.nuget\\packages\\mysqlconnector\\2.2.5\\mysqlconnector.2.2.5.nupkg.sha512",
+    "C:\\Users\\Isoard\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\7.0.0\\pomelo.entityframeworkcore.mysql.7.0.0.nupkg.sha512",
     "C:\\Users\\Isoard\\.nuget\\packages\\portable.bouncycastle\\1.9.0\\portable.bouncycastle.1.9.0.nupkg.sha512",
     "C:\\Users\\Isoard\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
     "C:\\Users\\Isoard\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
