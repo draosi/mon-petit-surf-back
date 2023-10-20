@@ -22,5 +22,17 @@ namespace MonPetitSurf.Controllers
         [Route("getSpots")]
         public async Task<ActionResult<List<Spots>>> getSpots()
             => await _monPetitSurfService.getSpots();
+
+        [HttpGet("getSpot/{id}")]
+        public async Task<ActionResult<Spots>> getSpotById(int id)
+        {
+            var result = await _monPetitSurfService.getSpotById(id);
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return result;
+        }
     }
 }
