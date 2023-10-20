@@ -7,12 +7,12 @@ namespace MonPetitSurf.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class MonPetitSurfController : ControllerBase
+    public class SpotsController : ControllerBase
     {
         private readonly MonPetitSurfContext _context;
         protected MonPetitSurfService _monPetitSurfService {  get; set; }
 
-        public MonPetitSurfController(MonPetitSurfContext context)
+        public SpotsController(MonPetitSurfContext context)
         {
             _context = context;
             _monPetitSurfService = new MonPetitSurfService(_context);
