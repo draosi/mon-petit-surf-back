@@ -21,5 +21,10 @@ namespace MonPetitSurf.Services
         {
             return await _context.Spots.FindAsync(id);
         }
+
+        public async Task<List<string>> getRegions()
+        {
+            return await _context.Spots.Select(e => e.Department).Distinct().ToListAsync();
+        }
     }
 }
