@@ -17,7 +17,7 @@ namespace MonPetitSurf.Services
             return await _context.Spots.ToListAsync();
         }
 
-        public async Task<Spots> getSpotById(int id)
+        public async Task<Spots?> getSpotById(int id)
         {
             return await _context.Spots.FindAsync(id);
         }
