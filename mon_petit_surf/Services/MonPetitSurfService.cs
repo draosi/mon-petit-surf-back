@@ -24,7 +24,11 @@ namespace MonPetitSurf.Services
 
         public async Task<List<string>> getRegions()
         {
-            return await _context.Spots.Select(e => e.Department).Distinct().ToListAsync();
+            return await _context.Spots
+                .Select(e => e.Department)
+                .Distinct()
+                .OrderBy(e => e)
+                .ToListAsync();
         }
 
         public async Task<List<Utilities>> getUtilities()
