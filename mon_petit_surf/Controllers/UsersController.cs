@@ -24,7 +24,7 @@ namespace MonPetitSurf.Controllers
         {
             if (await _monPetitSurfService.registerUser(registrationDto))
             {
-                return Ok("Utilisateur enregistré avec succès");
+                return Ok(new { message = "Nouvel utilisateur enregistré" });
             }
 
             return BadRequest("Echec de l'inscription");
