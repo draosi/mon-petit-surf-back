@@ -30,6 +30,19 @@ namespace MonPetitSurf.Controllers
             return BadRequest("Echec de l'inscription");
         }
 
+        [HttpGet("get/{id}")]
+        public async Task<IActionResult> getUserById(int id)
+        {
+            var userExist = await _monPetitSurfService.getUserById(id);
+
+            if (userExist == null)
+            {
+                return NotFound("Utilisateur non existant");
+            }
+
+            return Ok(userExist);
+        }
+
         [HttpDelete("delete/{id}")]
         public async Task<IActionResult> deleteUser(int id)
         {
@@ -37,7 +50,7 @@ namespace MonPetitSurf.Controllers
 
             if (!user)
             {
-                return NotFound("Utilisateur non trouvé");
+                return NotFound("Utilisateur non existant");
             }
 
             if (await _monPetitSurfService.deleteUser(id))
@@ -55,7 +68,7 @@ namespace MonPetitSurf.Controllers
 
             if (userExist == null)
             {
-                return NotFound("Utilisateur non trouvé");
+                return NotFound("Utilisateur non existant");
             }
 
             if(!string.IsNullOrEmpty(user.Username))
