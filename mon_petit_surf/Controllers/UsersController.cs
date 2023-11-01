@@ -47,5 +47,34 @@ namespace MonPetitSurf.Controllers
 
             return BadRequest("Échec de la suppression de l'utilisateur");
         }
+
+        [HttpPut("put/{id}")]
+        public async Task<IActionResult> updateUser(int id, [FromBody] UserUpdateDto user)
+        {
+            var userExist = await _monPetitSurfService.getUserById(id);
+
+            if (userExist == null)
+            {
+                return NotFound("Utilisateur non trouvé");
+            }
+
+            if(!string.IsNullOrEmpty(user.Username))
+            {
+                userExist.Username = user.Username;
+            }
+            if(!string.IsNullOrEmpty(user.Password))
+            {
+                string saltedPassword = BCrypt.Net.BCrypt.GenerateSalt(12);
+                string hashedPassword = BCrypt.Net.BCrypt.HashPassword(user.Password, saltedPassword);
+                userExist.Password = hashedPassword;
+            }
+
+            if (await _monPetitSurfService.updateUser(userExist))
+            {
+                return Ok(new { message = "Utilisitateur modifié avec succès" });
+            }
+
+            return BadRequest("Échec de la modification de l'utilisateur");
+        }
     }
 }

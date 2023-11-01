@@ -82,5 +82,17 @@ namespace MonPetitSurf.Services
             await _context.SaveChangesAsync();
             return true;
         }
+
+        public async Task<Users> getUserById(int id)
+        {
+            return (await _context.Users.FindAsync(id));
+        }
+
+        public async Task<bool> updateUser(Users user)
+        {
+            _context.Entry(user).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return true;
+        }
     }
 }
