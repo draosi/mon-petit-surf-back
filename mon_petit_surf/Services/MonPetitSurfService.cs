@@ -63,5 +63,24 @@ namespace MonPetitSurf.Services
         {
             return _context.Users.Any(e => e.Username == userName);
         }
+
+        public async Task<bool> userExist(int id)
+        {
+            return await _context.Users.AnyAsync(e => e.Id == id);
+        }
+
+        public async Task<bool> deleteUser(int id)
+        {
+            var user = await _context.Users.FindAsync(id);
+
+            if (user == null)
+            {
+                return false;
+            }
+
+            _context.Users.Remove(user);
+            await _context.SaveChangesAsync();
+            return true;
+        }
     }
 }

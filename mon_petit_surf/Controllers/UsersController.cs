@@ -29,5 +29,23 @@ namespace MonPetitSurf.Controllers
 
             return BadRequest("Echec de l'inscription");
         }
+
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> deleteUser(int id)
+        {
+            var user = await _monPetitSurfService.userExist(id);
+
+            if (!user)
+            {
+                return NotFound("Utilisateur non trouvé");
+            }
+
+            if (await _monPetitSurfService.deleteUser(id))
+            {
+                return Ok(new {message = "Utilisitateur supprimé avec succès"});
+            }
+
+            return BadRequest("Échec de la suppression de l'utilisateur");
+        }
     }
 }
