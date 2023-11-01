@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MonPetiSurf.Context;
+using MonPetitSurf.Dtos;
 using MonPetitSurf.Services;
 
 namespace MonPetitSurf.Controllers
@@ -15,6 +16,18 @@ namespace MonPetitSurf.Controllers
         {
             _context = context;
             _monPetitSurfService = new MonPetitSurfService(_context);
+        }
+
+        [HttpPost]
+        [Route("register")]
+        public async Task<IActionResult> registerUser(UserRegistrationDto registrationDto)
+        {
+            if (await _monPetitSurfService.registerUser(registrationDto))
+            {
+                return Ok("Utilisateur enregistré avec succès");
+            }
+
+            return BadRequest("Echec de l'inscription");
         }
     }
 }

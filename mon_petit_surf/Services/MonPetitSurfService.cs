@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MonPetiSurf.Context;
+using MonPetitSurf.Dtos;
 using MonPetitSurf.Models;
 
 namespace MonPetitSurf.Services
@@ -34,6 +35,20 @@ namespace MonPetitSurf.Services
         public async Task<List<Utilities>> getUtilities()
         {
             return await _context.Utilities.ToListAsync();
+        }
+
+        public async Task<bool> registerUser(UserRegistrationDto registrationDto)
+        {
+            var user = new Users
+            {
+                Username = registrationDto.Username,
+                Password = registrationDto.Password,
+            };
+
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+
+            return true;
         }
     }
 }
