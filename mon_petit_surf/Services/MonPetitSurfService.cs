@@ -39,6 +39,13 @@ namespace MonPetitSurf.Services
 
         public async Task<bool> registerUser(UserRegistrationDto registrationDto)
         {
+            if (isUserNameAvailable(registrationDto.Username))
+            {
+                return false;
+            }
+
+
+
             var user = new Users
             {
                 Username = registrationDto.Username,
@@ -49,6 +56,11 @@ namespace MonPetitSurf.Services
             await _context.SaveChangesAsync();
 
             return true;
+        }
+
+        private bool isUserNameAvailable(string userName)
+        {
+            return _context.Users.Any(e => e.Username == userName);
         }
     }
 }
