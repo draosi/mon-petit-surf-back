@@ -44,12 +44,13 @@ namespace MonPetitSurf.Services
                 return false;
             }
 
-
+            string saltedPassword = BCrypt.Net.BCrypt.GenerateSalt(12);
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(registrationDto.Password, saltedPassword);
 
             var user = new Users
             {
                 Username = registrationDto.Username,
-                Password = registrationDto.Password,
+                Password = hashedPassword,
             };
 
             _context.Users.Add(user);
