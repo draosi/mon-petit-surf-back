@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MonPetiSurf.Context;
 using MonPetitSurf.Dtos;
+using MonPetitSurf.Models;
 using MonPetitSurf.Services;
 
 namespace MonPetitSurf.Controllers
@@ -89,5 +90,9 @@ namespace MonPetitSurf.Controllers
 
             return BadRequest("Échec de la modification de l'utilisateur");
         }
+
+        [HttpGet("{id}/favorites")]
+        public async Task<ActionResult<IEnumerable<UsersRegisterSpots>>> getUserFavorites(int id)
+            => await _monPetitSurfService.getUserFavorites(id);
     }
 }

@@ -94,5 +94,14 @@ namespace MonPetitSurf.Services
             await _context.SaveChangesAsync();
             return true;
         }
+
+        public async Task<List<UsersRegisterSpots>> getUserFavorites(int id)
+        {
+            var favorites = await _context.UsersRegisterSpots
+                .Where(e => e.UserId == id)
+                .ToListAsync();
+
+            return favorites;
+        }
     }
 }
