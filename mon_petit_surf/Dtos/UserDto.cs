@@ -1,6 +1,6 @@
 ﻿namespace MonPetitSurf.Dtos
 {
-    public class UserUpdateDto
+    public class UserDto
     {
         public string Username { get; set; }
         public string Password { get; set; }

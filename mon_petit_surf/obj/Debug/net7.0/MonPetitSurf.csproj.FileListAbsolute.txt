@@ -66,3 +66,8 @@ C:\Users\Isoard\Desktop\CDA\Back\mon_petit_surf\mon_petit_surf\obj\Debug\net7.0\
 C:\Users\Isoard\Desktop\CDA\Back\mon_petit_surf\mon_petit_surf\obj\Debug\net7.0\MonPetitSurf.genruntimeconfig.cache
 C:\Users\Isoard\Desktop\CDA\Back\mon_petit_surf\mon_petit_surf\obj\Debug\net7.0\ref\MonPetitSurf.dll
 C:\Users\Isoard\Desktop\CDA\Back\mon_petit_surf\mon_petit_surf\bin\Debug\net7.0\BCrypt.Net.dll
+C:\Users\Isoard\Desktop\CDA\Back\mon_petit_surf\mon_petit_surf\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\Isoard\Desktop\CDA\Back\mon_petit_surf\mon_petit_surf\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Isoard\Desktop\CDA\Back\mon_petit_surf\mon_petit_surf\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Isoard\Desktop\CDA\Back\mon_petit_surf\mon_petit_surf\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Isoard\Desktop\CDA\Back\mon_petit_surf\mon_petit_surf\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll

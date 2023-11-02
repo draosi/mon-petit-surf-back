@@ -31,6 +31,26 @@ namespace MonPetitSurf.Controllers
             return BadRequest("Echec de l'inscription");
         }
 
+        [HttpPost("login")]
+        public async Task<IActionResult> loginUser(UserDto userDto)
+        {
+            var user = await _monPetitSurfService.getUserByUsername(userDto.Username);
+            if (user == null)
+            {
+                return BadRequest("Nom d'utilisateur ou mot de passe incorrect");
+            }
+
+            if (BCrypt.Net.BCrypt.Verify(userDto.Password, user.Password))
+            {
+                // Générez un jeton JWT
+                var jwtToken = _monPetitSurfService.generateJwtToken(user.Id);
+
+                return Ok(new { token = jwtToken });
+            }
+
+            return BadRequest("Nom d'utilisateur ou mot de passe incorrect");
+        }
+
         [HttpGet("get/{id}")]
         public async Task<IActionResult> getUserById(int id)
         {
@@ -63,7 +83,7 @@ namespace MonPetitSurf.Controllers
         }
 
         [HttpPut("put/{id}")]
-        public async Task<IActionResult> updateUser(int id, [FromBody] UserUpdateDto user)
+        public async Task<IActionResult> updateUser(int id, [FromBody] UserDto user)
         {
             var userExist = await _monPetitSurfService.getUserById(id);
 

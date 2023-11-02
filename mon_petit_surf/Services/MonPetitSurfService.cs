@@ -1,7 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using MonPetiSurf.Context;
 using MonPetitSurf.Dtos;
 using MonPetitSurf.Models;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace MonPetitSurf.Services
 {
@@ -102,6 +106,33 @@ namespace MonPetitSurf.Services
                 .ToListAsync();
 
             return favorites;
+        }
+
+        public async Task<Users> getUserByUsername(string username)
+        {
+            // FirstOrDefaultAsync permet de renvoyer null plutot qu'un erreur si la condition n'est pas rempli
+            return await _context.Users.FirstOrDefaultAsync(e => e.Username == username);
+        }
+
+        public string generateJwtToken(int id)
+        {
+            var securityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Secrets.JWT_SECRET));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+
+            var claims = new List<Claim>
+            {
+                new Claim(JwtRegisteredClaimNames.NameId, id.ToString()) // Ajoute l'identifiant de l'utilisateur comme revendication.
+            };
+
+            var token = new JwtSecurityToken(
+                    issuer: "https://localhost:7080/api/Users/login",
+                    audience: "http://localhost:5173/",
+                    claims: claims,
+                    expires: DateTime.Now.AddHours(2),
+                    signingCredentials: credentials
+            );
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }
