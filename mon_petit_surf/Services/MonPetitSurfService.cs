@@ -116,17 +116,18 @@ namespace MonPetitSurf.Services
 
         public string generateJwtToken(int id)
         {
-            var securityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Secrets.JWT_SECRET));
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Secrets.JWT_SECRET));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.NameId, id.ToString()) // Ajoute l'identifiant de l'utilisateur comme revendication.
+                // Ajoute l'identifiant de l'utilisateur comme revendication.
+                new Claim(JwtRegisteredClaimNames.NameId, id.ToString())
             };
 
             var token = new JwtSecurityToken(
-                    issuer: "https://localhost:7080/api/Users/login",
-                    audience: "http://localhost:5173/",
+                    issuer: Secrets.Issuer,
+                    audience: Secrets.Audience,
                     claims: claims,
                     expires: DateTime.Now.AddHours(2),
                     signingCredentials: credentials

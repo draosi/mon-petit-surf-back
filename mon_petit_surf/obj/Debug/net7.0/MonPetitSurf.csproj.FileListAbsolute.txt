@@ -71,3 +71,9 @@ C:\Users\Isoard\Desktop\CDA\Back\mon_petit_surf\mon_petit_surf\bin\Debug\net7.0\
 C:\Users\Isoard\Desktop\CDA\Back\mon_petit_surf\mon_petit_surf\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
 C:\Users\Isoard\Desktop\CDA\Back\mon_petit_surf\mon_petit_surf\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\Isoard\Desktop\CDA\Back\mon_petit_surf\mon_petit_surf\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Isoard\Desktop\CDA\Back\mon_petit_surf\mon_petit_surf\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Isoard\Desktop\CDA\Back\mon_petit_surf\mon_petit_surf\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Isoard\Desktop\CDA\Back\mon_petit_surf\mon_petit_surf\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Isoard\Desktop\CDA\Back\mon_petit_surf\mon_petit_surf\bin\Debug\net7.0\Scrutor.dll
+C:\Users\Isoard\Desktop\CDA\Back\mon_petit_surf\mon_petit_surf\bin\Debug\net7.0\Swashbuckle.AspNetCore.Filters.dll
+C:\Users\Isoard\Desktop\CDA\Back\mon_petit_surf\mon_petit_surf\bin\Debug\net7.0\Swashbuckle.AspNetCore.Filters.Abstractions.dll

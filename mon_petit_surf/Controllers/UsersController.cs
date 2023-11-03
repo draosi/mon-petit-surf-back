@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MonPetiSurf.Context;
 using MonPetitSurf.Dtos;
 using MonPetitSurf.Models;
@@ -44,16 +45,23 @@ namespace MonPetitSurf.Controllers
             {
                 // Générez un jeton JWT
                 var jwtToken = _monPetitSurfService.generateJwtToken(user.Id);
+                var response = new
+                {
+                    token = jwtToken,
+                    userId = user.Id,
+                };
 
-                return Ok(new { token = jwtToken });
+                return Ok(response);
             }
 
             return BadRequest("Nom d'utilisateur ou mot de passe incorrect");
         }
 
+        [Authorize]
         [HttpGet("get/{id}")]
         public async Task<IActionResult> getUserById(int id)
         {
+
             var userExist = await _monPetitSurfService.getUserById(id);
 
             if (userExist == null)

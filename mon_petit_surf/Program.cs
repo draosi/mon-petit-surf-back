@@ -1,7 +1,16 @@
 using Microsoft.EntityFrameworkCore;
 using MonPetiSurf.Context;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Filters;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.IdentityModel.Tokens;
+using MonPetitSurf;
+using System.Text;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+var key = Encoding.UTF8.GetBytes(Secrets.JWT_SECRET);
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,8 +19,9 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: MyAllowSpecificOrigins,
                       policy =>
                       {
-                          policy.AllowAnyOrigin().AllowAnyHeader()
-                .AllowAnyMethod();
+                          policy.AllowAnyOrigin()
+                                .AllowAnyHeader()
+                                .AllowAnyMethod();
                       });
 });
 
@@ -23,7 +33,39 @@ builder.Services.AddDbContext<MonPetitSurfContext>(options => options.UseMySql(
 ));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+// Permet de set up swagger afin d'y mettre le jwt
+builder.Services.AddSwaggerGen(options =>
+{
+    options.AddSecurityDefinition("security", new OpenApiSecurityScheme
+    {
+        In = ParameterLocation.Header,
+        Name = "Authorization",
+        Type = SecuritySchemeType.ApiKey
+    });
+
+    options.OperationFilter<SecurityRequirementsOperationFilter>();
+});
+
+// Vérifie la validité du jwt
+builder.Services.AddAuthentication(options =>
+    { 
+        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme; 
+        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    })
+    .AddJwtBearer(options =>
+    { 
+        options.TokenValidationParameters = new TokenValidationParameters
+        { 
+            ValidateIssuer = true, 
+            ValidIssuer = Secrets.Issuer,
+            ValidateAudience = true, 
+            ValidAudience = Secrets.Audience, 
+            ValidateIssuerSigningKey = true, 
+            IssuerSigningKey = new SymmetricSecurityKey(key), 
+            ValidateLifetime = true, 
+        }; 
+    });
 
 var app = builder.Build();
 
