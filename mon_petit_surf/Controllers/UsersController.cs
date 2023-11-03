@@ -72,6 +72,7 @@ namespace MonPetitSurf.Controllers
             return Ok(userExist);
         }
 
+        [Authorize]
         [HttpDelete("delete/{id}")]
         public async Task<IActionResult> deleteUser(int id)
         {
@@ -90,6 +91,7 @@ namespace MonPetitSurf.Controllers
             return BadRequest("Échec de la suppression de l'utilisateur");
         }
 
+        [Authorize]
         [HttpPut("put/{id}")]
         public async Task<IActionResult> updateUser(int id, [FromBody] UserDto user)
         {
@@ -119,6 +121,7 @@ namespace MonPetitSurf.Controllers
             return BadRequest("Échec de la modification de l'utilisateur");
         }
 
+        [Authorize]
         [HttpGet("{id}/favorites")]
         public async Task<ActionResult<IEnumerable<UsersRegisterSpots>>> getUserFavorites(int id)
             => await _monPetitSurfService.getUserFavorites(id);
