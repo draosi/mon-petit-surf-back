@@ -139,5 +139,19 @@ namespace MonPetitSurf.Controllers
                 return BadRequest($"Une erreur s'est produite : {ex.Message}");
             }
         }
+
+        [Authorize]
+        [HttpDelete("{userId}/favorites/{spotId}")]
+        public async Task<IActionResult> deleteFavorite(int userId, int spotId)
+        {
+            try
+            {
+                await _monPetitSurfService.deleteFavorite(userId, spotId);
+                return Ok("Favoris supprimé avec succès.");
+            } catch (Exception ex)
+            {
+                return BadRequest($"Une erreur s'est produite : {ex.Message}");
+            }
+        }
     }
 }

@@ -148,5 +148,16 @@ namespace MonPetitSurf.Services
             _context.UsersRegisterSpots.Add(favorite);
             await _context.SaveChangesAsync();
         }
+
+        public async Task deleteFavorite(int userId, int spotId)
+        {
+            var favorite = await _context.UsersRegisterSpots.SingleOrDefaultAsync(e => e.UserId == userId && e.SpotId == spotId);
+
+            if (favorite != null)
+            {
+                _context.UsersRegisterSpots.Remove(favorite);
+                await _context.SaveChangesAsync();
+            }
+        }
     }
 }
