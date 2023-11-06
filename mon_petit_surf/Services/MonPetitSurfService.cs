@@ -135,5 +135,18 @@ namespace MonPetitSurf.Services
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+
+        public async Task addFavorite(int userId, int spotId)
+        {
+            var favorite = new UsersRegisterSpots
+            {
+                UserId = userId,
+                SpotId = spotId,
+                CreatedAt = DateTime.Now,
+            };
+
+            _context.UsersRegisterSpots.Add(favorite);
+            await _context.SaveChangesAsync();
+        }
     }
 }

@@ -125,5 +125,19 @@ namespace MonPetitSurf.Controllers
         [HttpGet("{id}/favorites")]
         public async Task<ActionResult<IEnumerable<UsersRegisterSpots>>> getUserFavorites(int id)
             => await _monPetitSurfService.getUserFavorites(id);
+
+        [Authorize]
+        [HttpPost("{userId}/favorites/{spotId}")]
+        public async Task<IActionResult> addFavorite(int userId, int spotId)
+        {
+            try
+            {
+                await _monPetitSurfService.addFavorite(userId, spotId);
+                return Ok("Spot ajouté aux favoris avec succès.");
+            } catch (Exception ex)
+            {
+                return BadRequest($"Une erreur s'est produite : {ex.Message}");
+            }
+        }
     }
 }
