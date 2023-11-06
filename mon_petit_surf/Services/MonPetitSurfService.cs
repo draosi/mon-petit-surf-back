@@ -38,7 +38,7 @@ namespace MonPetitSurf.Services
 
         public async Task<List<Utilities>> getUtilities()
         {
-            return await _context.Utilities.ToListAsync();
+            return await _context.Utilities.OrderBy(e => e.Title).ToListAsync();
         }
 
         public async Task<bool> registerUser(UserRegistrationDto registrationDto)
