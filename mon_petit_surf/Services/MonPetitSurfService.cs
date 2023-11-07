@@ -45,6 +45,14 @@ namespace MonPetitSurf.Services
             return (await _context.Utilities.FindAsync(id));
         }
 
+        public List<Utilities> getSpotUtilities(Spots spot)
+        {
+            return _context.SpotsGetUtilities
+                .Where(e => e.SpotId == spot.Id)
+                .Select(e => e.Utility)
+                .ToList();
+        }
+
         public async Task postUtility(SpotsGetUtilities model)
         {
             var spot = await getSpotById(model.SpotId);

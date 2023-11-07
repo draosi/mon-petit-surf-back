@@ -10,7 +10,7 @@ namespace MonPetitSurf.Controllers
     public class SpotsController : ControllerBase
     {
         private readonly MonPetitSurfContext _context;
-        protected MonPetitSurfService _monPetitSurfService {  get; set; }
+        protected MonPetitSurfService _monPetitSurfService { get; set; }
 
         public SpotsController(MonPetitSurfContext context)
         {
@@ -42,6 +42,28 @@ namespace MonPetitSurf.Controllers
         [HttpGet("getUtilities")]
         public async Task<ActionResult<List<Utilities>>> getUtilities()
             => await _monPetitSurfService.getUtilities();
+
+        [Authorize]
+        [HttpGet("{spotId}/utilities")]
+        public async Task<IActionResult> getSpotUtilities(int spotId)
+        {
+            try
+            {
+                var spot = await _monPetitSurfService.getSpotById(spotId);
+
+                if (spot != null)
+                {
+                    var utilities = _monPetitSurfService.getSpotUtilities(spot);
+                    return Ok(utilities);
+                } else
+                {
+                    return BadRequest("Spot inexistant");
+                }
+            } catch (Exception ex)
+            {
+                return BadRequest($"Une erreur s'est produite : {ex.Message}");
+            }
+        }
 
         [Authorize]
         [HttpPost("{spotId}/utility/{utilityId}")]
