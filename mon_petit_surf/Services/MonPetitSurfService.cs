@@ -40,6 +40,32 @@ namespace MonPetitSurf.Services
             return await _context.Utilities.OrderBy(e => e.Title).ToListAsync();
         }
 
+        public async Task<Utilities> getUtilityById(int id)
+        {
+            return (await _context.Utilities.FindAsync(id));
+        }
+
+        public async Task postUtility(SpotsGetUtilities model)
+        {
+            var spot = await getSpotById(model.SpotId);
+            var utility = await getUtilityById(model.UtilityId);
+
+            if (spot != null && utility != null)
+            {
+                var associate = new SpotsGetUtilities
+                {
+                    Spot = spot,
+                    Utility = utility
+                };
+
+                _context.Add(associate);
+                _context.SaveChanges();
+            } else
+            {
+                throw new Exception("L'equipement ou le spot n'existe pas");
+            }
+        }
+
         public async Task<bool> registerUser(UserRegistrationDto registrationDto)
         {
             if (isUserNameAvailable(registrationDto.Username))

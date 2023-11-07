@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MonPetitSurf.Models;
 using MonPetitSurf.Services;
 
@@ -41,5 +42,34 @@ namespace MonPetitSurf.Controllers
         [HttpGet("getUtilities")]
         public async Task<ActionResult<List<Utilities>>> getUtilities()
             => await _monPetitSurfService.getUtilities();
+
+        [Authorize]
+        [HttpPost("{spotId}/utility/{utilityId}")]
+        public async Task<IActionResult> postUtility([FromBody] SpotsGetUtilities model)
+        {
+            try
+            {
+                var spot = await _monPetitSurfService.getSpotById(model.SpotId);
+                var utility = await _monPetitSurfService.getUtilityById(model.UtilityId);
+
+                if (spot != null && utility != null)
+                {
+                    _monPetitSurfService.postUtility(model);
+                    return Ok("Equipement ajouté au spot");
+                } else
+                {
+                    if (spot == null)
+                    {
+                        return BadRequest("Spot introuable");
+                    } else
+                    {
+                        return BadRequest("Equipement introuvable");
+                    }
+                }
+            } catch (Exception ex)
+            {
+                return BadRequest($"une erreur s'est produite : {ex.Message}");
+            }
+        }
     }
 }
