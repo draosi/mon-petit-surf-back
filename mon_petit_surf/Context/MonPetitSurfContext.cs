@@ -3,16 +3,13 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using MonPetitSurf.Models;
 
-namespace MonPetiSurf.Context;
+namespace MonPetitSurf.Models;
 
 public partial class MonPetitSurfContext : DbContext
 {
-
     public MonPetitSurfContext()
     {
-
     }
 
     public MonPetitSurfContext(DbContextOptions<MonPetitSurfContext> options)
@@ -22,12 +19,17 @@ public partial class MonPetitSurfContext : DbContext
 
     public virtual DbSet<Spots> Spots { get; set; }
 
+    public virtual DbSet<SpotsGetUtilities> SpotsGetUtilities { get; set; }
+
     public virtual DbSet<Users> Users { get; set; }
 
     public virtual DbSet<UsersRegisterSpots> UsersRegisterSpots { get; set; }
 
     public virtual DbSet<Utilities> Utilities { get; set; }
 
+//    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+//        => optionsBuilder.UseMySql("server=localhost;database=mon_petit_surf;uid=root", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.31-mysql"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -59,31 +61,33 @@ public partial class MonPetitSurfContext : DbContext
                 .IsRequired()
                 .HasMaxLength(255)
                 .HasColumnName("spot_name");
+        });
 
-            entity.HasMany(d => d.Utility).WithMany(p => p.Spot)
-                .UsingEntity<Dictionary<string, object>>(
-                    "SpotsGetUtilities",
-                    r => r.HasOne<Utilities>().WithMany()
-                        .HasForeignKey("UtilityId")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("fk_spots_get_utilities_utility"),
-                    l => l.HasOne<Spots>().WithMany()
-                        .HasForeignKey("SpotId")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("fk_spots_get_utilities_spot"),
-                    j =>
-                    {
-                        j.HasKey("SpotId", "UtilityId")
-                            .HasName("PRIMARY")
-                            .HasAnnotation("MySql:IndexPrefixLength", new[] { 0, 0 });
-                        j
-                            .ToTable("spots_get_utilities")
-                            .HasCharSet("utf8mb4")
-                            .UseCollation("utf8mb4_general_ci");
-                        j.HasIndex(new[] { "UtilityId" }, "fk_spots_get_utilities_utility");
-                        j.IndexerProperty<int>("SpotId").HasColumnName("spot_id");
-                        j.IndexerProperty<int>("UtilityId").HasColumnName("utility_id");
-                    });
+        modelBuilder.Entity<SpotsGetUtilities>(entity =>
+        {
+            entity.HasKey(e => new { e.SpotId, e.UtilityId })
+                .HasName("PRIMARY")
+                .HasAnnotation("MySql:IndexPrefixLength", new[] { 0, 0 });
+
+            entity
+                .ToTable("spots_get_utilities")
+                .HasCharSet("utf8mb4")
+                .UseCollation("utf8mb4_general_ci");
+
+            entity.HasIndex(e => e.UtilityId, "fk_spots_get_utilities_utility");
+
+            entity.Property(e => e.SpotId).HasColumnName("spot_id");
+            entity.Property(e => e.UtilityId).HasColumnName("utility_id");
+
+            entity.HasOne(d => d.Spot).WithMany(p => p.SpotsGetUtilities)
+                .HasForeignKey(d => d.SpotId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_spots_get_utilities_spot");
+
+            entity.HasOne(d => d.Utility).WithMany(p => p.SpotsGetUtilities)
+                .HasForeignKey(d => d.UtilityId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_spots_get_utilities_utility");
         });
 
         modelBuilder.Entity<Users>(entity =>

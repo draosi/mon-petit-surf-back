@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using MonPetiSurf.Context;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
@@ -8,6 +7,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.IdentityModel.Tokens;
 using MonPetitSurf;
 using System.Text;
+using MonPetitSurf.Models;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var key = Encoding.UTF8.GetBytes(Secrets.JWT_SECRET);

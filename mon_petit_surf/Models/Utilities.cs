@@ -11,5 +11,5 @@ public partial class Utilities
 
     public string Title { get; set; }
 
-    public virtual ICollection<Spots> Spot { get; set; } = new List<Spots>();
+    public virtual ICollection<SpotsGetUtilities> SpotsGetUtilities { get; set; } = new List<SpotsGetUtilities>();
 }

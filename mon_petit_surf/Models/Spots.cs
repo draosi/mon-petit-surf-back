@@ -17,7 +17,7 @@ public partial class Spots
 
     public string Department { get; set; }
 
-    public virtual ICollection<UsersRegisterSpots> UsersRegisterSpots { get; set; } = new List<UsersRegisterSpots>();
+    public virtual ICollection<SpotsGetUtilities> SpotsGetUtilities { get; set; } = new List<SpotsGetUtilities>();
 
-    public virtual ICollection<Utilities> Utility { get; set; } = new List<Utilities>();
+    public virtual ICollection<UsersRegisterSpots> UsersRegisterSpots { get; set; } = new List<UsersRegisterSpots>();
 }
