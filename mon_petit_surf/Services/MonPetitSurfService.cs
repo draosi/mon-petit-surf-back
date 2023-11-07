@@ -66,6 +66,21 @@ namespace MonPetitSurf.Services
             }
         }
 
+        public async Task deleteUtility(int spotId, int utilityId)
+        {
+            var utilityToDelete = await _context.SpotsGetUtilities
+                .SingleOrDefaultAsync(e => e.SpotId == spotId && e.UtilityId == utilityId);
+
+            if (utilityToDelete != null)
+            {
+                _context.SpotsGetUtilities.Remove(utilityToDelete);
+                _context.SaveChangesAsync();
+            } else
+            {
+                throw new Exception("L'equipement à effacer n'existe pas");
+            }
+        }
+
         public async Task<bool> registerUser(UserRegistrationDto registrationDto)
         {
             if (isUserNameAvailable(registrationDto.Username))

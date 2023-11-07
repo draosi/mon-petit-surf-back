@@ -71,5 +71,19 @@ namespace MonPetitSurf.Controllers
                 return BadRequest($"une erreur s'est produite : {ex.Message}");
             }
         }
+
+        [Authorize]
+        [HttpDelete("{spotId}/utility/{utilityId}")]
+        public async Task<IActionResult> deleteUtility(int spotId, int utilityId)
+        {
+            try
+            {
+                await _monPetitSurfService.deleteUtility(spotId, utilityId);
+                return Ok("Equipement supprimé avec succès");
+            } catch (Exception ex)
+            {
+                return BadRequest($"Une erreur s'est produite : {ex.Message}");
+            }
+        }
     }
 }
