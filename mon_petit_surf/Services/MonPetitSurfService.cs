@@ -130,8 +130,18 @@ namespace MonPetitSurf.Services
                 return false;
             }
 
+            var userFavorites = await _context.UsersRegisterSpots
+                .Where(e => e.UserId == user.Id)
+                .ToListAsync();
+
+            foreach (var item in userFavorites)
+            {
+                _context.UsersRegisterSpots.Remove(item);
+            }
+
             _context.Users.Remove(user);
             await _context.SaveChangesAsync();
+
             return true;
         }
 
