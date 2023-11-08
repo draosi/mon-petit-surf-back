@@ -49,16 +49,8 @@ namespace MonPetitSurf.Controllers
         {
             try
             {
-                //var spot = await _monPetitSurfService.getSpotById(spotId);
-
-                //if (spot != null)
-                //{
-                    var utilities = _monPetitSurfService.getSpotUtilities(spotId);
-                    return Ok(utilities);
-                //} else
-                //{
-                //    return BadRequest("Spot inexistant");
-                //}
+                var utilities = _monPetitSurfService.getSpotUtilities(spotId);
+                return Ok(utilities);
             } catch (Exception ex)
             {
                 return StatusCode(500, $"Une erreur s'est produite : {ex.Message}");

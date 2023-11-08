@@ -23,7 +23,7 @@ namespace MonPetitSurf.Services
 
         public Spots getSpotById(int id)
         {
-            var spot =  _context.Spots.FromSqlRaw($"SELECT * FROM spots WHERE spots.id = {id}").AsEnumerable().FirstOrDefault();
+            var spot = _context.Spots.Where(e => e.Id == id).FirstOrDefault();
             return spot;
         }
 
@@ -43,7 +43,7 @@ namespace MonPetitSurf.Services
 
         public Utilities getUtilityById(int id)
         {
-            return ( _context.Utilities.Find(id));
+            return (_context.Utilities.Find(id));
         }
 
         public List<Utilities> getSpotUtilities(int spotId)

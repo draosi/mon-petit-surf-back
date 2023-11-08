@@ -34,18 +34,7 @@ builder.Services.AddDbContext<MonPetitSurfContext>(options => options.UseMySql(
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
-// Permet de set up swagger afin d'y mettre le jwt
-builder.Services.AddSwaggerGen(options =>
-{
-    options.AddSecurityDefinition("security", new OpenApiSecurityScheme
-    {
-        In = ParameterLocation.Header,
-        Name = "Authorization",
-        Type = SecuritySchemeType.ApiKey
-    });
-
-    options.OperationFilter<SecurityRequirementsOperationFilter>();
-});
+builder.Services.AddSwaggerGen();
 
 // Vérifie la validité du jwt
 builder.Services.AddAuthentication(options =>
