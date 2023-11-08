@@ -26,7 +26,7 @@ namespace MonPetitSurf.Controllers
         [HttpGet("getSpot/{id}")]
         public async Task<ActionResult<Spots>> getSpotById(int id)
         {
-            var result = await _monPetitSurfService.getSpotById(id);
+            var result =  _monPetitSurfService.getSpotById(id);
             if (result == null)
             {
                 return NotFound();
@@ -49,19 +49,19 @@ namespace MonPetitSurf.Controllers
         {
             try
             {
-                var spot = await _monPetitSurfService.getSpotById(spotId);
+                //var spot = await _monPetitSurfService.getSpotById(spotId);
 
-                if (spot != null)
-                {
-                    var utilities = _monPetitSurfService.getSpotUtilities(spot);
+                //if (spot != null)
+                //{
+                    var utilities = _monPetitSurfService.getSpotUtilities(spotId);
                     return Ok(utilities);
-                } else
-                {
-                    return BadRequest("Spot inexistant");
-                }
+                //} else
+                //{
+                //    return BadRequest("Spot inexistant");
+                //}
             } catch (Exception ex)
             {
-                return BadRequest($"Une erreur s'est produite : {ex.Message}");
+                return StatusCode(500, $"Une erreur s'est produite : {ex.Message}");
             }
         }
 
@@ -71,8 +71,8 @@ namespace MonPetitSurf.Controllers
         {
             try
             {
-                var spot = await _monPetitSurfService.getSpotById(model.SpotId);
-                var utility = await _monPetitSurfService.getUtilityById(model.UtilityId);
+                var spot =  _monPetitSurfService.getSpotById(model.SpotId);
+                var utility =  _monPetitSurfService.getUtilityById(model.UtilityId);
 
                 if (spot != null && utility != null)
                 {
@@ -100,7 +100,7 @@ namespace MonPetitSurf.Controllers
         {
             try
             {
-                await _monPetitSurfService.deleteUtility(spotId, utilityId);
+                 _monPetitSurfService.deleteUtility(spotId, utilityId);
                 return Ok("Equipement supprimé avec succès");
             } catch (Exception ex)
             {

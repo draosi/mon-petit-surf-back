@@ -21,9 +21,10 @@ namespace MonPetitSurf.Services
             return await _context.Spots.ToListAsync();
         }
 
-        public async Task<Spots?> getSpotById(int id)
+        public Spots getSpotById(int id)
         {
-            return await _context.Spots.FindAsync(id);
+            var spot =  _context.Spots.FromSqlRaw($"SELECT * FROM spots WHERE spots.id = {id}").AsEnumerable().FirstOrDefault();
+            return spot;
         }
 
         public async Task<List<string>> getRegions()
@@ -40,23 +41,23 @@ namespace MonPetitSurf.Services
             return await _context.Utilities.OrderBy(e => e.Title).ToListAsync();
         }
 
-        public async Task<Utilities> getUtilityById(int id)
+        public Utilities getUtilityById(int id)
         {
-            return (await _context.Utilities.FindAsync(id));
+            return ( _context.Utilities.Find(id));
         }
 
-        public List<Utilities> getSpotUtilities(Spots spot)
+        public List<Utilities> getSpotUtilities(int spotId)
         {
             return _context.SpotsGetUtilities
-                .Where(e => e.SpotId == spot.Id)
+                .Where(e => e.SpotId == spotId)
                 .Select(e => e.Utility)
                 .ToList();
         }
 
         public async Task postUtility(SpotsGetUtilities model)
         {
-            var spot = await getSpotById(model.SpotId);
-            var utility = await getUtilityById(model.UtilityId);
+            var spot =  getSpotById(model.SpotId);
+            var utility = getUtilityById(model.UtilityId);
 
             if (spot != null && utility != null)
             {
@@ -74,15 +75,15 @@ namespace MonPetitSurf.Services
             }
         }
 
-        public async Task deleteUtility(int spotId, int utilityId)
+        public void deleteUtility(int spotId, int utilityId)
         {
-            var utilityToDelete = await _context.SpotsGetUtilities
-                .SingleOrDefaultAsync(e => e.SpotId == spotId && e.UtilityId == utilityId);
+            var utilityToDelete =  _context.SpotsGetUtilities
+                .SingleOrDefault(e => e.SpotId == spotId && e.UtilityId == utilityId);
 
             if (utilityToDelete != null)
             {
                 _context.SpotsGetUtilities.Remove(utilityToDelete);
-                _context.SaveChangesAsync();
+                _context.SaveChanges();
             } else
             {
                 throw new Exception("L'equipement à effacer n'existe pas");
