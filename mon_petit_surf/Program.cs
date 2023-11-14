@@ -8,6 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using MonPetitSurf;
 using System.Text;
 using MonPetitSurf.Models;
+using MonPetitSurf.Services;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var key = Encoding.UTF8.GetBytes(Secrets.JWT_SECRET);
@@ -31,6 +32,7 @@ builder.Services.AddDbContext<MonPetitSurfContext>(options => options.UseMySql(
     builder.Configuration.GetConnectionString("Default"),
     Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.31-mysql")
 ));
+builder.Services.AddScoped<MonPetitSurfService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
