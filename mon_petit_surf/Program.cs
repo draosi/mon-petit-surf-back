@@ -33,6 +33,7 @@ builder.Services.AddDbContext<MonPetitSurfContext>(options => options.UseMySql(
     Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.31-mysql")
 ));
 builder.Services.AddScoped<MonPetitSurfService>();
+builder.Services.AddScoped<RegionsService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 

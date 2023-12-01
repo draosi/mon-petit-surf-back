@@ -33,9 +33,9 @@ namespace MonPetitSurf.Controllers
             return result;
         }
 
-        [HttpGet("getRegions")]
-        public async Task<ActionResult<IEnumerable<string>>> getRegions()
-            => await _monPetitSurfService.getRegions();
+        //[HttpGet("getRegions")]
+        //public async Task<ActionResult<IEnumerable<string>>> getRegions()
+        //    => await _monPetitSurfService.getRegions();
 
         [HttpGet("getUtilities")]
         public async Task<ActionResult<List<Utilities>>> getUtilities()
