@@ -34,6 +34,7 @@ builder.Services.AddDbContext<MonPetitSurfContext>(options => options.UseMySql(
 ));
 builder.Services.AddScoped<MonPetitSurfService>();
 builder.Services.AddScoped<RegionsService>();
+builder.Services.AddScoped<UsersService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
