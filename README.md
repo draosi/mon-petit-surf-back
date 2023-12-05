@@ -5,6 +5,22 @@ Bienvenue dans l'API de Mon Petit Surf, une application ASP.Net Core qui permet 
 - .NET Core SDK
 - Visual Studio
 
+## Configuration des secrets JWT
+Pour que l'application fonctionne correctement, vous devez configurer les secrets liés au JSON Web Token (JWT). Suivez ces étapes :
+1. Créez une classe 'Secrets.cs' dans le dossier 'MonPetitSurf'
+
+2. Ajoutez les informations nécessaires :
+```sh
+internal class Secrets
+{
+  public const string JWT_SECRETS = "..."
+  public const string Issuer = "..."
+  public const string Audience = "..."
+}
+```
+
+3. Gardez ces secrets en sécurité en les ajoutant à votre .gitignore
+
 ## Dépendances
 - BCrypt.Net - Version 0.1.0
 - Microsoft.AspNetCore.Authentication.JwtBearer - Version 7.0.13
