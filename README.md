@@ -1,12 +1,15 @@
 # mon-petit-surf-back
 Bienvenue dans l'API de Mon Petit Surf, une application ASP.Net Core qui permet de consulter les conditions de surf d'une soixantaine de spots de la côte française.
 
+
 ## Configuration requise
 - .NET Core SDK
 - Visual Studio
 
+
 ## Configuration des secrets JWT
 Pour que l'application fonctionne correctement, vous devez configurer les secrets liés au JSON Web Token (JWT). Suivez ces étapes :
+
 1. Créez une classe 'Secrets.cs' dans le dossier 'MonPetitSurf'
 
 2. Ajoutez les informations nécessaires :
@@ -21,6 +24,7 @@ internal class Secrets
 
 3. Gardez ces secrets en sécurité en les ajoutant à votre .gitignore
 
+
 ## Dépendances
 - BCrypt.Net - Version 0.1.0
 - Microsoft.AspNetCore.Authentication.JwtBearer - Version 7.0.13
@@ -34,6 +38,7 @@ internal class Secrets
 - Swashbuckle.AspNetCore - Version 6.5.0
 - Swashbuckle.AspNetCore.Filters - Version 7.0.12
 - System.IdentityModel.Tokens.Jwt - Version 7.0.3
+
 
 ## Installation et execution
 1. Clonez le référentiel
