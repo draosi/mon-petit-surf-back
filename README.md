@@ -21,5 +21,16 @@ Bienvenue dans l'API de Mon Petit Surf, une application ASP.Net Core qui permet 
 
 ## Installation et execution
 1. Clonez le référentiel
+```sh
+git clone https://github.com/draosi/mon-petit-surf-back.git
+```
+
 2. Naviguez vers le dossier du projet
+```sh
+cd mon-petit-surf-back
+```
+
 3. Ouvrez le projet dans visual studio ou utilisez la ligne de commande
+```sh
+dotnet run
+```
