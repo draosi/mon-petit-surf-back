@@ -1,11 +1,11 @@
 # mon-petit-surf-back
 Bienvenue dans l'API de Mon Petit Surf, une application ASP.Net Core qui permet de consulter les conditions de surf d'une soixantaine de spots de la côte française.
 
-# Configuration requise
+## Configuration requise
 - .NET Core SDK
 - Visual Studio
 
-# Dépendances
+## Dépendances
 - BCrypt.Net - Version 0.1.0
 - Microsoft.AspNetCore.Authentication.JwtBearer - Version 7.0.13
 - Microsoft.AspNetCore.OpenApi - Version 7.0.12
@@ -18,3 +18,8 @@ Bienvenue dans l'API de Mon Petit Surf, une application ASP.Net Core qui permet 
 - Swashbuckle.AspNetCore - Version 6.5.0
 - Swashbuckle.AspNetCore.Filters - Version 7.0.12
 - System.IdentityModel.Tokens.Jwt - Version 7.0.3
+
+## Installation et execution
+1. Clonez le référentiel
+2. Naviguez vers le dossier du projet
+3. Ouvrez le projet dans visual studio ou utilisez la ligne de commande
