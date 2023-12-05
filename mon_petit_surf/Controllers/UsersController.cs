@@ -10,18 +10,18 @@ namespace MonPetitSurf.Controllers
     [Route("api/[controller]")]
     public class UsersController : ControllerBase
     {
-        protected MonPetitSurfService _monPetitSurfService { get; set; }
+        protected UsersService _usersService { get; set; }
 
-        public UsersController(MonPetitSurfService monPetitSurfService)
+        public UsersController(UsersService usersService)
         {
-            _monPetitSurfService = monPetitSurfService;
+            _usersService = usersService;
         }
 
         [HttpPost]
         [Route("register")]
         public async Task<IActionResult> registerUser(UserRegistrationDto registrationDto)
         {
-            if (await _monPetitSurfService.registerUser(registrationDto))
+            if (await _usersService.registerUser(registrationDto))
             {
                 return Ok(new { message = "Nouvel utilisateur enregistré" });
             }
@@ -32,7 +32,7 @@ namespace MonPetitSurf.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> loginUser(UserDto userDto)
         {
-            var user = await _monPetitSurfService.getUserByUsername(userDto.Username);
+            var user = await _usersService.getUserByUsername(userDto.Username);
             if (user == null)
             {
                 return BadRequest("Nom d'utilisateur ou mot de passe incorrect");
@@ -41,7 +41,7 @@ namespace MonPetitSurf.Controllers
             if (BCrypt.Net.BCrypt.Verify(userDto.Password, user.Password))
             {
                 // Générez un jeton JWT
-                var jwtToken = _monPetitSurfService.generateJwtToken(user.Id);
+                var jwtToken = _usersService.generateJwtToken(user.Id);
                 var response = new
                 {
                     token = jwtToken,
@@ -59,7 +59,7 @@ namespace MonPetitSurf.Controllers
         public async Task<IActionResult> getUserById(int id)
         {
 
-            var userExist = await _monPetitSurfService.getUserById(id);
+            var userExist = await _usersService.getUserById(id);
 
             if (userExist == null)
             {
@@ -73,14 +73,14 @@ namespace MonPetitSurf.Controllers
         [HttpDelete("delete/{id}")]
         public async Task<IActionResult> deleteUser(int id)
         {
-            var user = await _monPetitSurfService.userExist(id);
+            var user = await _usersService.userExist(id);
 
             if (!user)
             {
                 return NotFound("Utilisateur non existant");
             }
 
-            if (await _monPetitSurfService.deleteUser(id))
+            if (await _usersService.deleteUser(id))
             {
                 return Ok(new {message = "Utilisitateur supprimé avec succès"});
             }
@@ -92,7 +92,7 @@ namespace MonPetitSurf.Controllers
         [HttpPut("put/{id}")]
         public async Task<IActionResult> updateUser(int id, [FromBody] UserDto user)
         {
-            var userExist = await _monPetitSurfService.getUserById(id);
+            var userExist = await _usersService.getUserById(id);
 
             if (userExist == null)
             {
@@ -110,7 +110,7 @@ namespace MonPetitSurf.Controllers
                 userExist.Password = hashedPassword;
             }
 
-            if (await _monPetitSurfService.updateUser(userExist))
+            if (await _usersService.updateUser(userExist))
             {
                 return Ok(new { message = "Utilisitateur modifié avec succès" });
             }
@@ -121,7 +121,7 @@ namespace MonPetitSurf.Controllers
         [Authorize]
         [HttpGet("{id}/favorites")]
         public async Task<ActionResult<IEnumerable<UsersRegisterSpots>>> getUserFavorites(int id)
-            => await _monPetitSurfService.getUserFavorites(id);
+            => await _usersService.getUserFavorites(id);
 
         [Authorize]
         [HttpPost("{userId}/favorites/{spotId}")]
@@ -129,7 +129,7 @@ namespace MonPetitSurf.Controllers
         {
             try
             {
-                await _monPetitSurfService.addFavorite(userId, spotId);
+                await _usersService.addFavorite(userId, spotId);
                 return Ok("Spot ajouté aux favoris avec succès.");
             } catch (Exception ex)
             {
@@ -143,7 +143,7 @@ namespace MonPetitSurf.Controllers
         {
             try
             {
-                await _monPetitSurfService.deleteFavorite(userId, spotId);
+                await _usersService.deleteFavorite(userId, spotId);
                 return Ok("Favoris supprimé avec succès.");
             } catch (Exception ex)
             {
