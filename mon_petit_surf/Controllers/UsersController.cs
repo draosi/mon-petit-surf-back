@@ -45,7 +45,6 @@ namespace MonPetitSurf.Controllers
                 var response = new
                 {
                     token = jwtToken,
-                    userId = user.Id,
                 };
 
                 return Ok(response);
